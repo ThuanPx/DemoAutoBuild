@@ -1,0 +1,41 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Build release"
+  lane :build do |options|
+
+#     password = options[:password]
+#     gradle(
+#            task: "config -PappName="+password,
+#     )
+
+    gradle(
+        task: "assembleProd",
+        build_type: "Release",
+        properties: {
+            "android.injected.signing.store.file" => options[:pathKeyStore],
+            "android.injected.signing.store.password" => options[:password],
+            "android.injected.signing.key.alias" => options[:alias],
+            "android.injected.signing.key.password" => options[:passwordAlias],
+          }
+    )
+  end
+
+
+
+end

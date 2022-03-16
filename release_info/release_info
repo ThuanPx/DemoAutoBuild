@@ -1,0 +1,4 @@
+thuan123
+autobuildalias
+
+fastlane build pathKeyStore:/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/release_info/autobuild password:thuan123 alias:autobuildalias passwordAlias:thuan123
