@@ -1,40 +1,18 @@
-import java.io.File
-
 abstract class GreetingTask extends DefaultTask {
-//    @Input
-//    abstract Property<String> getGreeting()
 
     GreetingTask() {
     }
 
     @TaskAction
     def greet() {
-//        if (project.hasProperty("applicationId")) {
-//            println project.getProperty("applicationId")
-//        }
-
-//        File propsFile = new File('/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/gradle.properties')
-//            println "Target environment: $profile"
-//            Properties props = new Properties()
-//            props.setProperty("com.newrelic.application_token","DEV_TOKEN")
-//            props.store(propsFile.newWriter(), null)
+        ant.propertyfile(file: "/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/gradle.properties") {
+            entry( key: "appName", value: project.getProperty("appName"))
+            entry( key: "applicationId", value: project.getProperty("applicationId"))
+        }
 
 
-//        ant.propertyfile(file: "/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/gradle.properties") {
-//            entry( key: "com.newrelic.application_token", value: "sd1231232")
-//        }
-
-//        def file = new File("/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/gradle.properties")
-//        println " *** $file.name ***"
-//        println "${ant.properties["appName"]}"
-
-//        def files = file('./antLoadfileResources').listFiles().sort()
-//        files.each { File file ->
-//            if (file.isFile()) {
-//                ant.loadfile(srcFile: file, property: file.name)
-//                println " *** $file.name ***"
-//                println "${ant.properties[file.name]}"
-//            }
+//        ant.move(todir: '/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/app/src/main/res/drawable', overwrite: true, force: true, flatten: false) {
+//            fileset(dir: '/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/icon_app')
 //        }
 
     }

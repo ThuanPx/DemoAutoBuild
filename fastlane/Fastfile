@@ -16,14 +16,14 @@
 default_platform(:android)
 
 platform :android do
-  desc "Build release"
   lane :build do |options|
 
-#     password = options[:password]
-#     gradle(
-#            task: "config -PappName="+password,
-#     )
+    desc "Config appName and applicationId"
+    gradle(
+           task: "config -PappName='"+ options[:appName] + "' -PapplicationId=" + options[:applicationId],
+    )
 
+    desc "Build release"
     gradle(
         task: "assembleProd",
         build_type: "Release",
@@ -35,7 +35,5 @@ platform :android do
           }
     )
   end
-
-
 
 end
