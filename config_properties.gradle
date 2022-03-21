@@ -1,21 +1,21 @@
-abstract class GreetingTask extends DefaultTask {
+abstract class ConfigInfoTask extends DefaultTask {
 
-    GreetingTask() {
-    }
+    ConfigInfoTask() {}
 
     @TaskAction
-    def greet() {
-        ant.propertyfile(file: "/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/gradle.properties") {
-            entry( key: "appName", value: project.getProperty("appName"))
-            entry( key: "applicationId", value: project.getProperty("applicationId"))
+    def configInfo() {
+        // config app name and applicationID
+        ant.propertyfile(file: "../gradle.properties") {
+            entry(key: "appName", value: project.getProperty("appName"))
+            entry(key: "applicationId", value: project.getProperty("applicationId"))
         }
 
-
-//        ant.move(todir: '/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/app/src/main/res/drawable', overwrite: true, force: true, flatten: false) {
-//            fileset(dir: '/Users/er_macbook_226/Desktop/AndroidProjects/DemoAutoBuild/icon_app')
-//        }
+        // config icon app
+        ant.copy(todir: './src/main/res', overwrite: true, force: true, flatten: false) {
+            fileset(dir:"../icon_app")
+        }
 
     }
 }
 
-tasks.register('config', GreetingTask)
+tasks.register('config-info', ConfigInfoTask)
